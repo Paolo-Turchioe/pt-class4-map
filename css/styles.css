@@ -9,7 +9,7 @@
 #title-container {
   position: absolute;
   z-index: 1000;
-  top: 11px;
+  bottom: 11px;
   left: 56px;
   background: #FFF;
   padding: 15px;
