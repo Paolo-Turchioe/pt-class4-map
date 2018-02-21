@@ -12,13 +12,13 @@ L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{e
 L.geoJson(statesData).addTo(map);
 
 function getColor(d) {
-    return d > 50000000  ? '#BD0026' :
-           d > 20000000  ? '#E31A1C' :
-           d > 1000000  ? '#FC4E2A' :
-           d > 500000   ? '#FD8D3C' :
-           d > 2000   ? '#FEB24C' :
-           d > 0   ? '#FED976' :
-                      '#FFEDA0';
+    return d > 50000000  ? '#722F37' :
+           d > 20000000  ? '#895158' :
+           d > 1000000  ? '#A17479' :
+           d > 500000   ? '#B8979B' :
+           d > 2000   ? '#D0B9BC' :
+           d > 0   ? '#E7DCDD' :
+                      '#FFFFFF';
 }
 function style(feature) {
     return {
@@ -42,13 +42,15 @@ function highlightFeature(e) {
         dashArray: '',
         fillOpacity: 0.7
     });
+		info.update(layer.feature.properties);
 
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
-    }}
+		}}
 
 function resetHighlight(e) {
     geojson.resetStyle(e.target);
+		info.update();
 }
 
 var geojson;
@@ -68,4 +70,21 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight,
         click: zoomToFeature
     });
-}
+			}
+var info = L.control();
+
+		info.onAdd = function (map) {
+		    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+		    this.update();
+		    return this._div;
+		};
+		info.update = function (props) {
+		    this._div.innerHTML = '<h4>Wine Production by gallon</h4>' +  (props ?
+		        '<b>' + props.name + '</b><br />' + props.gallon
+		        : 'Hover over a state');
+		};
+		info.addTo(map);
+
+		$('.reset').click(function() {
+  map.flyTo([37.8, -96], 4)
+});
