@@ -13,6 +13,8 @@
   left: 56px;
   background: #FFF;
   padding: 15px;
+  border-style:solid;
+  border-color:black;
   border-radius: 7px;
 }
 
@@ -28,8 +30,10 @@ h2  {
 #legend {
   float: right;
   background: #FFF;
-  border: 2px solid black
   padding: 12px;
+  border-style:solid;
+  border-color:grey;
+  border-radius: 7px;
   margin-left: 15px;
 }
 
@@ -45,7 +49,7 @@ h2  {
     background: white;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
+    border-radius: 7px;
 }
 .info h4 {
     margin: 0 0 5px;

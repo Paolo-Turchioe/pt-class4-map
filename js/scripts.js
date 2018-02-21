@@ -1,5 +1,5 @@
 
-var map = L.map('my-map').setView([37.8, -96], 4);
+var map = L.map('my-map').setView([37.8, -96], 3);
 
 L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -12,21 +12,21 @@ L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{e
 L.geoJson(statesData).addTo(map);
 
 function getColor(d) {
-    return d > 50000000  ? '#722F37' :
-           d > 20000000  ? '#895158' :
-           d > 1000000  ? '#A17479' :
-           d > 500000   ? '#B8979B' :
-           d > 2000   ? '#D0B9BC' :
-           d > 0   ? '#E7DCDD' :
-                      '#FFFFFF';
+    return d > 50000000  ? '#7a0177' :
+           d > 20000000  ? '#ae017e' :
+           d > 1000000  ? '#dd3497' :
+           d > 500000   ? '#f768a1' :
+           d > 1   ? '#fa9fb5' :
+           d > 0   ? '#fcc5c0' :
+                      '#fcc5c0';
 }
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.gallon),
-        weight: 2,
+        weight: .5,
         opacity: 1,
-        color: 'white',
-        dashArray: '3',
+        color: 'black',
+        dashArray: '1',
         fillOpacity: 0.7
     };
 }
@@ -37,8 +37,8 @@ function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
-        weight: 5,
-        color: '#666',
+        weight: 3,
+        color: 'white',
         dashArray: '',
         fillOpacity: 0.7
     });
@@ -74,7 +74,7 @@ function onEachFeature(feature, layer) {
 var info = L.control();
 
 		info.onAdd = function (map) {
-		    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+		    this._div = L.DomUtil.create('div', 'info'); 
 		    this.update();
 		    return this._div;
 		};
@@ -86,5 +86,5 @@ var info = L.control();
 		info.addTo(map);
 
 		$('.reset').click(function() {
-  map.flyTo([37.8, -96], 4)
+  map.flyTo([37.8, -96], 3)
 });
