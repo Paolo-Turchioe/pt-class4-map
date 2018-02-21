@@ -74,13 +74,13 @@ function onEachFeature(feature, layer) {
 var info = L.control();
 
 		info.onAdd = function (map) {
-		    this._div = L.DomUtil.create('div', 'info'); 
+		    this._div = L.DomUtil.create('div', 'info');
 		    this.update();
 		    return this._div;
 		};
 		info.update = function (props) {
-		    this._div.innerHTML = '<h4>Wine Production by gallon</h4>' +  (props ?
-		        '<b>' + props.name + '</b><br />' + props.gallon
+		    this._div.innerHTML = '<h4>Wine Production</h4>' +  (props ?
+		        '<b>' + props.name + '</b><br />' + props.gallon + ' gallons'
 		        : 'Hover over a state');
 		};
 		info.addTo(map);
